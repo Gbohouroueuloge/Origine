@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client"
+  output = "./migration"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      String   @default("user")
+  reviews   Review[]
+  orders    Order[]
+  createdAt DateTime @default(now())
+  cart      Json?    // <--- stocker le panier
+  wishlist  Json?    // <--- stocker les favoris
+  refreshToken String? // <--- pour le refresh token
+  theme     String?    // "light" ou "dark"
+  filters   Json?      // { searchQuery, selectedCategory, priceRange, sortBy }
+}
+
+model Category {
+  id    String   @id @default(uuid())
+  name  String
+  icon  String
+  products Product[]
+}
+
+model Product {
+  id            String   @id @default(uuid())
+  name          String
+  price         Float
+  originalPrice Float?
+  stock         Int      @default(1)
+  description   String
+  features      String[]
+  image         String
+  inStock       Boolean  @default(true)
+  rating        Float    @default(0)
+  reviews       Int      @default(0)
+  reviewsList   Review[]
+  category      Category @relation(fields: [categoryId], references: [id])
+  categoryId    String
+  orderItems    OrderItem[]
+  featuredAt    DateTime? // Date d'ajout aux produits vedettes (null = pas vedette)
+  createdAt     DateTime  @default(now()) // <-- Ajouté pour le tri
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  rating    Int
+  text      String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String
+  createdAt DateTime @default(now())
+}
+
+model Order {
+  id        String      @id @default(uuid())
+  user      User        @relation(fields: [userId], references: [id])
+  userId    String
+  items     OrderItem[]
+  subtotal  Float
+  discount  Float
+  total     Float
+  promo     String?
+  date      DateTime    @default(now())
+}
+
+model OrderItem {
+  id        String   @id @default(uuid())
+  order     Order    @relation(fields: [orderId], references: [id])
+  orderId   String
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String
+  name      String
+  price     Float
+  quantity  Int
+}
+
+model Promo {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  discount    Float
+  description String?
+  expiresAt   DateTime?
+}
