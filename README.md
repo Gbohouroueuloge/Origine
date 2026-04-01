@@ -1,8 +1,8 @@
-# Shadcn-UI Template Usage Instructions
+# Instructions d'utilisation du template Shadcn-UI
 
-## technology stack
+## Stack technique
 
-This project is built with:
+Ce projet est construit avec :
 
 - Vite
 - TypeScript
@@ -10,59 +10,19 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-All shadcn/ui components have been downloaded under `@/components/ui`.
+Tous les composants shadcn/ui ont été téléchargés dans `@/components/ui`.
 
-## File Structure
+## Structure des fichiers
 
-- `index.html` - HTML entry point
-- `vite.config.ts` - Vite configuration file
-- `tailwind.config.js` - Tailwind CSS configuration file
-- `package.json` - NPM dependencies and scripts
-- `src/app.tsx` - Root component of the project
-- `src/main.tsx` - Project entry point
-- `src/index.css` - Existing CSS configuration
-- `src/pages/Index.tsx` - Home page logic
+- `index.html` - Point d'entrée HTML
+- `vite.config.ts` - Fichier de configuration Vite
+- `tailwind.config.js` - Fichier de configuration Tailwind CSS
+- `package.json` - Dépendances et scripts NPM
+- `src/app.tsx` - Composant racine du projet
+- `src/main.tsx` - Point d'entrée du projet
+- `src/index.css` - Configuration CSS existante
+- `src/pages/Index.tsx` - Logique de la page d'accueil
 
-## Components
+## Composants
 
-- All shadcn/ui components are pre-downloaded and available at `@/components/ui`
-
-## Styling
-
-- Add global styles to `src/index.css` or create new CSS files as needed
-- Use Tailwind classes for styling components
-
-## Development
-
-- Import components from `@/components/ui` in your React components
-- Customize the UI by modifying the Tailwind configuration
-
-## Note
-
-- The `@/` path alias points to the `src/` directory
-- In your typescript code, don't re-export types that you're already importing
-
-# Commands
-
-**Install Dependencies**
-
-```shell
-pnpm i
-```
-
-**Add Dependencies**
-
-```shell
-pnpm add some_new_dependency
-
-**Start Preview**
-
-```shell
-pnpm run dev
-```
-
-**To build**
-
-```shell
-pnpm run build
-```
+- Tous les composants shadcn/ui sont pré-téléchargés et disponibles dans `@/components/ui`
