@@ -6,6 +6,7 @@
     "dev": "vite",
     "dev:api": "cd src/api && npm run dev",
     "dev:all": "concurrently \"npm run dev\" \"npm run dev:api\"",
+    "install:all": "concurrently \"npm i\" \"cd src/api && npm i\"",
     "build": "vite build",
     "lint": "eslint --quiet ./src",
     "preview": "vite preview"
